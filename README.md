@@ -1,6 +1,7 @@
 # 서블릿
+**공부내용** https://www.notion.so/53cc6a06a65546b1b61eb8cd11e2c1bb
 ------------
-## 1. 스프링 부트 서블릿 환경 구성
+## 1-1. 스프링 부트 서블릿 환경 구성
 ### @ServletComponentScan
 : 스프링 부트는 서블릿을 직접 등록해서 사용할 수 있도록 @ServletCompoentScan을 지원한다.
 
@@ -18,7 +19,7 @@ public class ServletApplication {
 ```
 
 ------------
-## 2. 서블릿 등록하기
+## 1-2. 서블릿 등록하기
 ### @WebServlet
 - name: 서블릿 이름 
 - urlPatterns: URL 매핑
@@ -41,7 +42,7 @@ public class HelloServlet extends HttpServlet {
 ```
 
 ------------
-## 3. HttpServletRequest
+## 2-1. HttpServletRequest
 ### HTTP 요청 메시지를 편리하게 조회할 수 있음.
 - START LINE
     - HTTP 메소드
@@ -64,7 +65,7 @@ public class HelloServlet extends HttpServlet {
 - request.getSession(create: true)
 
 ------------
-## 4. HTTP 요청 데이터
+## 2-2. HTTP 요청 데이터
 ### 주로 3가지 방법 사용
 - **GET - 쿼리 파라미터**
     - /url**?username=hello&age=20**
@@ -78,13 +79,31 @@ public class HelloServlet extends HttpServlet {
     - HTTP API에서 주로 사용, JSON, XML, TEXT
     - 데이터 형식은 주로 JSON 사용
     - POST, PUT, PATCH
+
 *쿼리 파라미터 조회 메서드*
 - GET - 쿼리 파라미터 형식
 - POST - application/x-www-form-urlencoded 형식
-- 서버 
+- 서버 입장에서는 둘의 형식이 동일하므로 아래 메서드 사용
 ```java
 String username = request.getParameter("username"); //단일 파라미터 조회 
 Enumeration<String> parameterNames = request.getParameterNames(); //파라미터 이름들 모두 조회
 Map<String, String[]> parameterMap = request.getParameterMap(); //파라미터를 Map 으로 조회
 String[] usernames = request.getParameterValues("username"); //복수 파라미터 조회
 ```
+
+------------
+## 3-1. HttpServletResponse
+### HTTP 응답 메시지를 편리하게 조회할 수 있음.
+- HTTP 응답코드 지정
+- 헤더 생성
+- 바디 생성
+
+### 편의 기능 제공
+- Content-Type, 쿠키, Redirect
+
+------------
+## 3-2. HTTP 응답 데이터
+### 주로 3가지 방법 사용
+- **단순 텍스트**
+- **HTML**
+- **JSON**
