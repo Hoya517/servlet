@@ -78,3 +78,13 @@ public class HelloServlet extends HttpServlet {
     - HTTP API에서 주로 사용, JSON, XML, TEXT
     - 데이터 형식은 주로 JSON 사용
     - POST, PUT, PATCH
+*쿼리 파라미터 조회 메서드*
+- GET - 쿼리 파라미터 형식
+- POST - application/x-www-form-urlencoded 형식
+- 서버 
+```java
+String username = request.getParameter("username"); //단일 파라미터 조회 
+Enumeration<String> parameterNames = request.getParameterNames(); //파라미터 이름들 모두 조회
+Map<String, String[]> parameterMap = request.getParameterMap(); //파라미터를 Map 으로 조회
+String[] usernames = request.getParameterValues("username"); //복수 파라미터 조회
+```
